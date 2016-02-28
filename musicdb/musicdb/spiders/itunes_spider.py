@@ -4,6 +4,7 @@ import urllib2
 from musicdb.items import *
 
 class ItunesSpider(scrapy.Spider):
+	download_delay = 1.0
 	name = "itunes"
 	allowed_domains = ["itunes.apple.com"]
 	start_urls = ["https://itunes.apple.com/us/genre/music/id34"]
