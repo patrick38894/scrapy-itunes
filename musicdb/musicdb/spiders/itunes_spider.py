@@ -30,6 +30,19 @@ class ItunesSpider(scrapy.Spider):
 			#print (artist)
 			yield request
 
+	def parse_top_10(self, response):
+		artist = response.meta['artist']
+		n = 0
+		for sel in response.xpath("//body/div/div/div/div/div/div/table/tbody/tr"):
+			entry = Top10Item()
+			entry['artist'] = str(artist)
+			entry['track_name'] = str(sel.xpath('td/span/span/text()').extract()[1])
+			entry['jstontype'] = 'top10'
+			if (n) >= 10):
+				break
+			n = n + 1
+			yield entry
+
 	def parse_artist(self, response):
 		genre = response.meta['genre']
 		artist = response.meta['artist']
@@ -60,6 +73,7 @@ class ItunesSpider(scrapy.Spider):
 			entry['song_price'] = str(price)
 			entry['track_number'] = str(tracknum)
 			entry['album'] = str(album)
+			entry['jsontype'] = 'general'
 
 
 			yield entry

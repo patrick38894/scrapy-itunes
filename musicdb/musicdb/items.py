@@ -7,6 +7,11 @@
 
 import scrapy
 
+class Top10Item(scrapy.Item):
+	jsontype = scrapy.Field()
+	artist = scrapy.Field()
+	track_name = scrapy.Field()
+	
 
 class MusicdbItem(scrapy.Item):
     # define the fields for your item here like:
@@ -18,4 +23,5 @@ class MusicdbItem(scrapy.Item):
 	track_number = scrapy.Field()
 	album = scrapy.Field()
 	genre = scrapy.Field()
+	jsontype = scrapy.Field()
 
