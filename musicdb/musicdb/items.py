@@ -24,4 +24,6 @@ class MusicdbItem(scrapy.Item):
 	album = scrapy.Field()
 	genre = scrapy.Field()
 	jsontype = scrapy.Field()
+	release_date = scrapy.Field()
+	album_price = scrapy.Field()
 
