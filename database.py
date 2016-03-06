@@ -21,7 +21,7 @@ cur = conn.cursor()
 
 n = 0
 for i in data:
-	if (i[j'son_type'] != 'general')
+	if (i['jsontype'] != 'general'):
 		continue
 	album_name = i ["album"]
 	song_price = i ["song_price"]
@@ -29,6 +29,8 @@ for i in data:
 	artist_name = i ["artist_name"]
 	track_number = i ["track_number"]
 	song_name = i ["track_name"]
+	album_price = i ["album_price"]
+	release_date = i ["release_date"]
 	genre = i ["genre"]
 	
 	print song_name
@@ -38,8 +40,8 @@ for i in data:
 	album_id = genID(album_name + artist_name)
 
 	is_top_10 = False
-	for (j in data):
-		if (j['json_type'] == 'top10' && song_id == genID(j['track_name'] + j['artist']))
+	for j in data:
+		if (j['jsontype'] == 'top10') and (song_id == genID(j['track_name'] + j['artist'])):
 			is_top_10 = True
 
 	try:
@@ -57,8 +59,8 @@ for i in data:
 	except:
 		pass
 	try:
-		query3 = "INSERT INTO music.album (Album_ID, Album_Name) values "
-		query3 += "(" +  album_id + ",\'" + album_name + "\');"
+		query3 = "INSERT INTO music.album (Album_ID, Album_Name, Album_Price, Release_Date) values "
+		query3 += "(" +  album_id + ",\'" + album_name + "\',\'" + album_price + "\',\'" + release_date +  "\');"
 		print(query3)
 		cur.execute(query3)
 	except:
@@ -88,7 +90,7 @@ for i in data:
 		pass
 
 	if (is_top_10):
-		try
+		try:
 			query6 = "INSERT INTO music.Top_10(Artist_ID, Song_ID) values "
 			query6 += "(" + artist_id + "," + song_id + ");"
 			print(query6)
